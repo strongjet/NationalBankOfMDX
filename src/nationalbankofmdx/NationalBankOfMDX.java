@@ -83,6 +83,29 @@ public class NationalBankOfMDX {
                                     UserNo = Integer.parseInt(Menu_selection);
                                 }
                             }
+
+                            String firstname, surname;
+                            
+                            for (int i = 1; i <= UserNo; i++) {
+                                System.out.print("\nFor USER " + i + " - \n");
+                                System.out.print("Please enter user's FIRST name: ");
+                                firstname = input.next();
+                                System.out.print("Please enter user's SURNAME: ");
+                                surname = input.next();
+                                System.out.print("\nHow many transactions do you want to add to " + firstname + " " + surname + ": ");
+                                correct_in = false;
+                                while (correct_in == false) {
+                                    Menu_selection = input.next();
+                                    if (!Menu_selection.matches("[0-9]+")) {
+                                        System.out.print("Please enter a valid number of users, if none type 0: ");
+                                    } else {
+                                        correct_in = true;
+                                        TransactionNo = Integer.parseInt(Menu_selection);
+                                    }
+                                }
+                                transactionListSetup.clear();
+                                
+                            }
                         }
                     }
 
