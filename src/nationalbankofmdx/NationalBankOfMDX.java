@@ -1,6 +1,7 @@
 package nationalbankofmdx;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -65,34 +66,13 @@ public class NationalBankOfMDX {
                     }
 
                 case "2":
-
                     if (!BankA_no.isEmpty()) {
 
                         System.out.print("\nPlease enter a Bank Account Number that this user is to be added to: ");
                         EnteredBankA = input.next();
                         if (BankA_no.contains(EnteredBankA)) {
 
-                            System.out.print("\nHow many users do you want to add to " + EnteredBankA + ": ");
-                            correct_in = false;
-                            while (correct_in == false) {
-                                Menu_selection = input.next();
-                                if (!Menu_selection.matches("[0-9]+")) {
-                                    System.out.print("Please enter a valid number of users, if none type 0: ");
-                                } else {
-                                    correct_in = true;
-                                    UserNo = Integer.parseInt(Menu_selection);
-                                }
-                            }
-
-                            String firstname, surname;
-
-                            for (int i = 1; i <= UserNo; i++) {
-                                System.out.print("\nFor USER " + i + " - \n");
-                                System.out.print("Please enter user's FIRST name: ");
-                                firstname = input.next();
-                                System.out.print("Please enter user's SURNAME: ");
-                                surname = input.next();
-                                System.out.print("\nHow many transactions do you want to add to " + firstname + " " + surname + ": ");
+                                System.out.print("\nHow many users do you want to add to " + EnteredBankA + ": ");
                                 correct_in = false;
                                 while (correct_in == false) {
                                     Menu_selection = input.next();
@@ -100,12 +80,51 @@ public class NationalBankOfMDX {
                                         System.out.print("Please enter a valid number of users, if none type 0: ");
                                     } else {
                                         correct_in = true;
-                                        TransactionNo = Integer.parseInt(Menu_selection);
+                                        UserNo = Integer.parseInt(Menu_selection);
                                     }
                                 }
-                                transactionListSetup.clear();
 
-                            }
+                                String firstname, surname;
+
+                                for (int i = 1; i <= UserNo; i++) {
+                                    System.out.print("\nFor USER " + i + " - \n");
+                                    System.out.print("Please enter user's FIRST name: ");
+                                    firstname = input.next();
+                                    System.out.print("Please enter user's SURNAME: ");
+                                    surname = input.next();
+                                    System.out.print("\nHow many transactions do you want to add to " + firstname + " " + surname + ": ");
+                                    correct_in = false;
+                                    while (correct_in == false) {
+                                        Menu_selection = input.next();
+                                        if (!Menu_selection.matches("[0-9]+")) {
+                                            System.out.print("Please enter a valid number of users, if none type 0: ");
+                                        } else {
+                                            correct_in = true;
+                                            TransactionNo = Integer.parseInt(Menu_selection);
+                                        }
+                                    }
+                                    transactionListSetup.clear();
+
+                                    for (int p = 1; p <= TransactionNo; p++) {
+                                        System.out.print("\nFor transaction Number " + p + " please enter for "
+                                                + "Deposits (10, 20 or 50) or Withdrawals (-10, -20 or -50): ");
+                                        correct_in = false;
+                                        while (correct_in == false) {
+                                            Menu_selection = input.next();
+                                            if (!Menu_selection.matches("^.*?(10|20|50|-10|-20|-50).*$")) {
+                                                System.out.print("INVLID INPUT, Please enter for Deposits (10, 20 or 50) or"
+                                                        + " Withdrawals (-10, -20 or -50): ");
+                                            } else {
+                                                transactionListSetup.add(Double.parseDouble(Menu_selection));
+                                                correct_in = true;
+                                            }
+                                        }
+                                    }
+                                    transactionList.add(transactionListSetup);
+                                    Users.add(firstname + ":" + surname + ":" + EnteredBankA);
+                                }
+                                
+                            correct_in = false;
                         } else {
                             System.out.println("\n\nERROR, THE ACCOUNT YOU HAVE ENTERED DOES NOT EXIST\n\n");
                             correct_in = false;
@@ -115,14 +134,10 @@ public class NationalBankOfMDX {
                         correct_in = false;
                     }
                     break;
-            }
-
-        
-    
-
-case "3":
+                case "3":
                 case "4":
-                    System.exit(0);
+                    System.exit(
+                            0);
 
             }
 
