@@ -50,7 +50,7 @@ public class User {
         }
     }
 
-    public double userBalance() {
+    public AtomicInteger userBalance() {
         return bankAccount.getAccountBalance();
     }     
 }
