@@ -1,6 +1,7 @@
 package nationalbankofmdx;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  *
@@ -49,7 +50,7 @@ public class User {
         }
     }
 
-    public Double userBalance() {
+    public AtomicInteger userBalance() {
         return bankAccount.getAccountBalance();
     }     
 }
