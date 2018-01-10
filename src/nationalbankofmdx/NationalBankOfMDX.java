@@ -72,6 +72,47 @@ public class NationalBankOfMDX {
                         EnteredBankA = input.next();
                         if (BankA_no.contains(EnteredBankA)) {
 
+                            System.out.print("\nThere is a default preset set, please enter 1 if you want to load it up: ");
+
+                            if (input.next().equals("1")) {
+                                System.out.println("\n//////////////////INITIALISING USERS//////////////////\n"
+                                        + "\nUser 1\n"
+                                        + "Name: Saul Goodman\n"
+                                        + "Transaction List:\n"
+                                        + "£50, £10, -£20,\n"
+                                        + "£10, £-20, £20,\n"
+                                        + "£10, £50, -£10,\n"
+                                        + "£10, £-10, £50\n"
+                                        + "\nUser 2\n"
+                                        + "Name: Walter White"
+                                        + "\nTransaction List:\n"
+                                        + "£20, £20, -£20,\n"
+                                        + "£50, £-20, £10,\n"
+                                        + "£50, £50, -£20,\n"
+                                        + "£10, £10\n"
+                                        + "\nUser 3\n"
+                                        + "Name: Jessie Pinkman\n"
+                                        + "Transaction List:\n "
+                                        + "£50, £10, £10,\n"
+                                        + "-£10, £-10, £50,\n"
+                                        + "£20, -£10, -£20\n"
+                                        + "\nUser 4\n"
+                                        + "Name: Hank Schrader\n"
+                                        + "Transaction List:\n"
+                                        + "£50, £10, -£20,\n"
+                                        + "£20, £10, -£20\n");
+
+                                Users.add("Saul:Goodman:" + EnteredBankA);
+                                transactionList.add(Arrays.asList(Double.parseDouble(EnteredBankA), 50.0, 10.0, -20.0, 10.0, -20.0, 20.0, 10.0, 50.0, -10.0, 10.0, -10.0, 50.0));
+                                Users.add("Walter:White:" + EnteredBankA);
+                                transactionList.add(Arrays.asList(Double.parseDouble(EnteredBankA), 20.0, 20.0, -20.0, 50.0, -20.0, 10.0, 50.0, 50.0, -20.0, 10.0, 10.0));
+                                Users.add("Jessie:Pinkman:" + EnteredBankA);
+                                transactionList.add(Arrays.asList(Double.parseDouble(EnteredBankA), 50.0, 10.0, 10.0, -10.0, -10.0, 50.0, 20.0, -10.0, -20.0));
+                                Users.add("Hank:Schrader:" + EnteredBankA);
+                                transactionList.add(Arrays.asList(Double.parseDouble(EnteredBankA), 50.0, 10.0, -20.0, 20.0, 10.0, -20.0));
+
+                            } else {
+
                                 System.out.print("\nHow many users do you want to add to " + EnteredBankA + ": ");
                                 correct_in = false;
                                 while (correct_in == false) {
@@ -123,7 +164,8 @@ public class NationalBankOfMDX {
                                     transactionList.add(transactionListSetup);
                                     Users.add(firstname + ":" + surname + ":" + EnteredBankA);
                                 }
-                                
+
+                            }
                             correct_in = false;
                         } else {
                             System.out.println("\n\nERROR, THE ACCOUNT YOU HAVE ENTERED DOES NOT EXIST\n\n");
