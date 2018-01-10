@@ -42,6 +42,28 @@ public class NationalBankOfMDX {
 
             switch (Menu_selection) {
             case "1":
+                    System.out.print('\f'
+                            + "\nInitialising bank account creation...\n\n"
+                            + "Please enter the Bank Account Number: ");
+                    CurrentBankA = input.next();
+                    if (CurrentBankA.matches("[0-9]+") && !BankA_no.contains(CurrentBankA)) {
+                        correct_in = false;
+                        System.out.println("\nBank Account Number: " + CurrentBankA);
+                        System.out.print("\n\nPlease enter the Bank Account Starting Balance, be sure you don't make a mistake: \n£");
+                        BankA_no.add(CurrentBankA);
+                        Balance = input.next();
+                        if (Balance.matches("\\d+(\\.\\d{1,2})?")) {
+                            BankA_no.add(CurrentBankA + " :" + Balance);
+                            correct_in = false;
+                            System.out.println("\nBank Account " + CurrentBankA + " created with balance £" + Balance + "\n");
+                        } else {
+                            System.out.println("\n\n ERROR, PLEASE ENTER A VALID BALANCE\n\n");
+                        }
+                        break;
+                    } else {
+                        System.out.println("\n\n ERROR, PLEASE ENTER A VALID BANK ACCOUNT NUMBER <DUPLICATES AREN@T VALID>\n\n");
+                    }
+                    
             case "2":
             case "3":
             case "4":
