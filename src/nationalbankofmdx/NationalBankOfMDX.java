@@ -41,7 +41,7 @@ public class NationalBankOfMDX {
             }
 
             switch (Menu_selection) {
-            case "1":
+                case "1":
                     System.out.print('\f'
                             + "\nInitialising bank account creation...\n\n"
                             + "Please enter the Bank Account Number: ");
@@ -63,16 +63,37 @@ public class NationalBankOfMDX {
                     } else {
                         System.out.println("\n\n ERROR, PLEASE ENTER A VALID BANK ACCOUNT NUMBER <DUPLICATES AREN@T VALID>\n\n");
                     }
-                    
-            case "2":
-            case "3":
-            case "4":
+
+                case "2":
+
+                    if (!BankA_no.isEmpty()) {
+
+                        System.out.print("\nPlease enter a Bank Account Number that this user is to be added to: ");
+                        EnteredBankA = input.next();
+                        if (BankA_no.contains(EnteredBankA)) {
+
+                            System.out.print("\nHow many users do you want to add to " + EnteredBankA + ": ");
+                            correct_in = false;
+                            while (correct_in == false) {
+                                Menu_selection = input.next();
+                                if (!Menu_selection.matches("[0-9]+")) {
+                                    System.out.print("Please enter a valid number of users, if none type 0: ");
+                                } else {
+                                    correct_in = true;
+                                    UserNo = Integer.parseInt(Menu_selection);
+                                }
+                            }
+                        }
+                    }
+
+                case "3":
+                case "4":
                     System.exit(0);
-            
-            }
 
             }
 
         }
 
     }
+
+}
