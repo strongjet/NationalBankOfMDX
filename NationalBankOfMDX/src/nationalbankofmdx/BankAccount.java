@@ -5,44 +5,56 @@ package nationalbankofmdx;
  * @author Radwane
  */
 
+import java.util.concurrent.atomic.AtomicInteger;
 
-public class BankAccount extends Thread{
+public class BankAccount extends Thread {
 
-    private Double balance;
+    private AtomicInteger balance;
     private final long accountNo;
 
-    public BankAccount(long accountNo, Double bal) {
+    public BankAccount(long accountNo, int bal) {
         this.accountNo = accountNo;
-        this.balance = bal;
+        this.balance = new AtomicInteger(bal);
     }
 
     public long getAccountNo() {
         return this.accountNo;
     }
 
-    public Double getAccountBalance() {
+    public AtomicInteger getAccountBalance() {
         return this.balance;
     }
 
-    public void withdraw(Double bal) {
+    public synchronized void withdraw(double bal) {
+        try {
 
-            if ( (balance + bal) > 0) {
+            if (balance.addAndGet((int) bal) > 0) {
 
-                this.balance += bal; 
+                try {
+                    Thread.sleep(100);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 System.out.println("Withdrawing £" + bal + " your new balance now is: £" + balance);
 
             } else {
                 System.out.println("Insufficent money, Withdrawal FAILED!");
-
+                balance.addAndGet((int) bal);
             }
-
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public void deposit(Double bal) {
+    public synchronized void deposit(double bal) {
 
-        this.balance+= bal;
-        System.out.println("Depositing £" + bal + " your new balance now is: £" + balance);
+        try {
+            Thread.sleep(100);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("Depositing £" + bal + " your new balance now is: £" + balance.addAndGet((int) bal));
 
     }
 }
