@@ -6,7 +6,7 @@ package nationalbankofmdx;
  */
 
 
-public class BankAccount{
+public class BankAccount extends Thread{
 
     private Double balance;
     private final long accountNo;
