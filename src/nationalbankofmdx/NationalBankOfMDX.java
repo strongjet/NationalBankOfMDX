@@ -40,8 +40,17 @@ public class NationalBankOfMDX {
                 }
             }
 
+            switch (Menu_selection) {
+            case "1":
+            case "2":
+            case "3":
+            case "4":
+                    System.exit(0);
+            
+            }
+
+            }
+
         }
 
     }
-
-}
