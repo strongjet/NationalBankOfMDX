@@ -8,10 +8,10 @@ package nationalbankofmdx;
 
 public class BankAccount{
 
-    private Integer balance;
-    private long accountNo;
+    private Double balance;
+    private final long accountNo;
 
-    public BankAccount(long accountNo, int bal) {
+    public BankAccount(long accountNo, Double bal) {
         this.accountNo = accountNo;
         this.balance = bal;
     }
@@ -20,11 +20,11 @@ public class BankAccount{
         return this.accountNo;
     }
 
-    public int getAccountBalance() {
+    public Double getAccountBalance() {
         return this.balance;
     }
 
-    public void withdraw(int bal) {
+    public void withdraw(Double bal) {
 
             if ( (balance + bal) > 0) {
 
@@ -39,7 +39,7 @@ public class BankAccount{
 
     }
 
-    public void deposit(int bal) {
+    public void deposit(Double bal) {
 
         this.balance+= bal;
         System.out.println("Depositing £" + bal + " your new balance now is: £" + balance);
