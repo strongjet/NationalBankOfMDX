@@ -11,7 +11,7 @@ public class User {
     private final String name;
     private final String surname;
     private final List<Double> transactionList;
-    private BankAccount bankAccount;    
+    private final BankAccount bankAccount;    
 
     public User(String n, String s, List<Double> tL, BankAccount bA) {
         this.name = n;
