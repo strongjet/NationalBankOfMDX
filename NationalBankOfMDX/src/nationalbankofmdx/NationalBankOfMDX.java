@@ -195,7 +195,7 @@ public class NationalBankOfMDX {
                             }
                         } else {
 
-                            double balance = 0;
+                            Double balance = null;
                             for (String temp : BankA_no) {
                                 if (temp.contains(Menu_selection + " :")) {
                                     String AccountnBalance[] = temp.split(":");
