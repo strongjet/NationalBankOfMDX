@@ -8,9 +8,9 @@ import java.util.List;
  */
 public class User {
 
-    private String name;
-    private String surname;
-    private List<Double> transactionList;
+    private final String name;
+    private final String surname;
+    private final List<Double> transactionList;
 
     public User(String n, String s, List<Double> tL) {
         this.name = n;
