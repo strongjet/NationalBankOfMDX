@@ -66,8 +66,8 @@ public class NationalBankOfMDX {
                     }
 
                 case "2":
-                    if (!BankA_no.isEmpty()) {
 
+                    if (!BankA_no.isEmpty()) {
                         System.out.print("\nPlease enter a Bank Account Number that this user is to be added to: ");
                         EnteredBankA = input.next();
                         if (BankA_no.contains(EnteredBankA)) {
@@ -177,6 +177,25 @@ public class NationalBankOfMDX {
                     }
                     break;
                 case "3":
+
+                    System.out.print("\n############SIMULATION MODE############\n"
+                            + "\n$$$$$$$$$$$$$$$$ PLEASE ENTER THE ACCOUNT NUMBER YOU WANT TO SIMULATE $$$$$$$$$$$$$$$$\n"
+                            + "Account number input....: ");
+
+                    correct_in = false;
+                    while (correct_in == false) {
+                        Menu_selection = input.next();
+
+                        if (!BankA_no.contains(Menu_selection)) {
+                            System.out.print("Please enter a account number, type 0 to exit: ");
+                            if (Menu_selection.equals(0)) {
+                                break;
+                            }
+                        } else {
+                            
+                        }
+                    }
+
                 case "4":
                     System.exit(
                             0);
