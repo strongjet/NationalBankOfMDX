@@ -192,7 +192,15 @@ public class NationalBankOfMDX {
                                 break;
                             }
                         } else {
-                            
+
+                            int balance = 0;
+                            for (String temp : BankA_no) {
+                                if (temp.contains(Menu_selection + " :")) {
+                                    String AccountnBalance[] = temp.split(":");
+
+                                    balance = Integer.parseInt(AccountnBalance[1]);
+                                }
+                            }
                         }
                     }
 
