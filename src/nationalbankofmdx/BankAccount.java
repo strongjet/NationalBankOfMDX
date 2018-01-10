@@ -1,7 +1,5 @@
 package nationalbankofmdx;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 /**
  *
  * @author Radwane
@@ -10,52 +8,41 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class BankAccount extends Thread{
 
-    private AtomicInteger balance;
+    private Double balance;
     private final long accountNo;
 
-    public BankAccount(long accountNo, int bal) {
+    public BankAccount(long accountNo, Double bal) {
         this.accountNo = accountNo;
-        this.balance = new AtomicInteger(bal);
+        this.balance = bal;
     }
 
     public long getAccountNo() {
         return this.accountNo;
     }
 
-    public AtomicInteger getAccountBalance() {
+    public Double getAccountBalance() {
         return this.balance;
     }
 
-    public synchronized void withdraw(double bal) {
-        try {
+    public void withdraw(Double bal) {
 
-            if (balance.addAndGet((int) bal) > 0) {
+            if ( (balance + bal) > 0) {
 
-                try {
-                    Thread.sleep(100);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                this.balance += bal; 
 
                 System.out.println("Withdrawing £" + bal + " your new balance now is: £" + balance);
 
             } else {
                 System.out.println("Insufficent money, Withdrawal FAILED!");
-                balance.addAndGet((int) bal);
+
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
     }
 
-    public synchronized void deposit(double bal) {
+    public void deposit(Double bal) {
 
-        try {
-            Thread.sleep(100);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println("Depositing £" + bal + " your new balance now is: £" + balance.addAndGet((int) bal));
+        this.balance+= bal;
+        System.out.println("Depositing £" + bal + " your new balance now is: £" + balance);
 
     }
 }
