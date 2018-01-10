@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  *
@@ -14,7 +16,7 @@ public class NationalBankOfMDX {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
-
+        ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
         List<String> BankA_no = new ArrayList<>();
         List<String> Users = new ArrayList<>();
         List<List<Double>> transactionList = new ArrayList<>();
@@ -193,14 +195,48 @@ public class NationalBankOfMDX {
                             }
                         } else {
 
-                            int balance = 0;
+                            Double balance = null;
                             for (String temp : BankA_no) {
                                 if (temp.contains(Menu_selection + " :")) {
                                     String AccountnBalance[] = temp.split(":");
 
-                                    balance = Integer.parseInt(AccountnBalance[1]);
+                                    balance = Double.parseDouble(AccountnBalance[1]);
                                 }
                             }
+                            BankAccount Mainthread = new BankAccount(Long.parseLong(Menu_selection), balance);
+                            Mainthread.start();
+                            int iterator = 0;
+                            List<Double> UserTransactionList = null;
+
+                            for (String temp : Users) {
+                                String AccountNoVerify[] = temp.split(":");
+                                if (AccountNoVerify[2].equals(Menu_selection)) {
+                                    System.out.println("<>First Name: " + AccountNoVerify[0]);
+                                    System.out.println("<>Surname: " + AccountNoVerify[1]);
+                                    System.out.println("<>Account number: " + AccountNoVerify[2]);
+                                    int iterator2 = 0;
+                                    for (List<Double> temp2 : transactionList) {
+                                        if (temp2.get(0).equals(Double.parseDouble(AccountNoVerify[2])) && iterator2 <= iterator) {
+                                            Integer ListSize = temp2.size();
+                                            List<Double> temp22 = temp2.subList(1, ListSize);
+                                            UserTransactionList = temp22;
+                                            iterator2 += 1;
+                                        }
+                                    }
+
+                                    Runner thread = new Runner(new User(AccountNoVerify[0], AccountNoVerify[1], UserTransactionList, Mainthread));
+
+                                    executor.execute(thread);
+                                }
+                                iterator += 1;
+                            }
+
+                            executor.shutdown();
+
+                            while (!executor.isTerminated()) {
+                            }
+
+                            break;
                         }
                     }
 
