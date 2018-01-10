@@ -85,7 +85,7 @@ public class NationalBankOfMDX {
                             }
 
                             String firstname, surname;
-                            
+
                             for (int i = 1; i <= UserNo; i++) {
                                 System.out.print("\nFor USER " + i + " - \n");
                                 System.out.print("Please enter user's FIRST name: ");
@@ -104,12 +104,23 @@ public class NationalBankOfMDX {
                                     }
                                 }
                                 transactionListSetup.clear();
-                                
-                            }
-                        }
-                    }
 
-                case "3":
+                            }
+                        } else {
+                            System.out.println("\n\nERROR, THE ACCOUNT YOU HAVE ENTERED DOES NOT EXIST\n\n");
+                            correct_in = false;
+                        }
+                    } else {
+                        System.out.println("\n\nERROR, PLEASE CREATE A BANK ACCOUNT. NO BANK ACCOUNT EXISTS\n\n");
+                        correct_in = false;
+                    }
+                    break;
+            }
+
+        
+    
+
+case "3":
                 case "4":
                     System.exit(0);
 
