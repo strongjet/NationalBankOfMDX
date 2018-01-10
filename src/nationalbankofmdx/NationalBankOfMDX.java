@@ -195,12 +195,12 @@ public class NationalBankOfMDX {
                             }
                         } else {
 
-                            Double balance = null;
+                            int balance = 0;
                             for (String temp : BankA_no) {
                                 if (temp.contains(Menu_selection + " :")) {
                                     String AccountnBalance[] = temp.split(":");
 
-                                    balance = Double.parseDouble(AccountnBalance[1]);
+                                    balance = Integer.parseInt(AccountnBalance[1]);
                                 }
                             }
                             BankAccount Mainthread = new BankAccount(Long.parseLong(Menu_selection), balance);
@@ -241,9 +241,7 @@ public class NationalBankOfMDX {
                     }
 
                 case "4":
-                    System.exit(
-                            0);
-
+                    System.exit(0);
             }
 
         }
